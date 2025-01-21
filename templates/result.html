@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Results</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="result-page">
+        <header class="header">
+            <h1>📊 Image Analysis Results</h1>
+        </header>
+        <main class="result-container">
+            <div class="results">
+                <h2>Objects Detected in the Image:</h2>
+                <ul>
+                    {% for label in labels %}
+                    <li class="result-item">
+                        <div class="label">{{ label.description }}</div>
+                        <div class="confidence">%{{ "%.2f"|format(label.score * 100) }}</div>
+                    </li>
+                    {% else %}
+                    <li>No labels found.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="image-preview">
+                <h3>Uploaded Image:</h3>
+                <img src="{{ image_url }}" alt="Uploaded Image" style="max-width: 100%; border-radius: 10px;">
+            </div>
+            <a href="/" class="modern-button">Upload a New Image</a>
+        </main>
+    </div>
+</body>
+</html>
